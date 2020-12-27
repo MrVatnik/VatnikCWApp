@@ -84,9 +84,23 @@
     <Compile Include="BipolarTransistor.cs" />
     <Compile Include="Capacitor.cs" />
     <Compile Include="Diode.cs" />
+    <Compile Include="EditElementWindow.xaml.cs">
+      <DependentUpon>EditElementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ElementTypeChangeWindow.xaml.cs">
+      <DependentUpon>ElementTypeChangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FieldEffectTransistor.cs" />
     <Compile Include="Resistor.cs" />
     <Page Include="AddElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ElementTypeChangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

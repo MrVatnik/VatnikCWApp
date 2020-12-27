@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddElementWindow" Height="126" Width="800">
     <Grid>
-        <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Margin="233,10,9.6,0" Height="49" VerticalAlignment="Top" AutoGeneratingColumn="ElementDataGrid_AutoGeneratingColumn"/>
+        <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Margin="233,10,10,0" Height="49" VerticalAlignment="Top" AutoGeneratingColumn="ElementDataGrid_AutoGeneratingColumn" CanUserAddRows="False"/>
         <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="23" Margin="108,37,0,0" TextWrapping="Wrap" Text="0.1" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" Margin="108,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged"/>
         <Label x:Name="label1" Content="New items type" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>

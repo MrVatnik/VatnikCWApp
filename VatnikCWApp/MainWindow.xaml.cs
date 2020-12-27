@@ -35,6 +35,14 @@ namespace VatnikCWApp
         };
 
 
+        List<Element> ElementsTable;
+        List<Resistor> ResistorsTable;
+        List<Capacitor> CapacitorsTable;
+        List<Diode> DiodesTable;
+        List<FieldEffectTransistor> FETTable;
+        List<BipolarTransistor> BTTable;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -57,24 +65,31 @@ namespace VatnikCWApp
         private void TypesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int i = TypesComboBox.SelectedIndex;
+          
             switch (i){
                 case 0:
-                    dataGridMain.ItemsSource = db.GetTable<Element>();
+                    ElementsTable = db.GetTable<Element>().ToList<Element>();
+                    dataGridMain.ItemsSource = ElementsTable;
                     break;
                 case 1:
-                    dataGridMain.ItemsSource = db.GetTable<Resistor>();
+                    ResistorsTable = db.GetTable<Resistor>().ToList<Resistor>();
+                    dataGridMain.ItemsSource = ResistorsTable;
                     break;
                 case 2:
-                    dataGridMain.ItemsSource = db.GetTable<Capacitor>();
+                    CapacitorsTable = db.GetTable<Capacitor>().ToList<Capacitor>();
+                    dataGridMain.ItemsSource = CapacitorsTable;
                     break;
                 case 3:
-                    dataGridMain.ItemsSource = db.GetTable<Diode>();
+                    DiodesTable = db.GetTable<Diode>().ToList<Diode>();
+                    dataGridMain.ItemsSource = DiodesTable;
                     break;
                 case 4:
-                    dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>();
+                    FETTable = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>();
+                    dataGridMain.ItemsSource = FETTable;
                     break;
                 case 5:
-                    dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>();
+                    BTTable = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>();
+                    dataGridMain.ItemsSource = BTTable;
                     break;
             }
         }
@@ -94,5 +109,61 @@ namespace VatnikCWApp
             AddElementWindow win = new AddElementWindow();
             win.Show();
         }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridRow dgr = null;
+            if (sender != null)
+            {
+                dgr = sender as DataGridRow;
+            }
+            int i = TypesComboBox.SelectedIndex;
+            switch (i)
+            {
+                case 0:
+                    {
+                        Element selected = dgr.Item as Element;
+                        EditElementWindow eew = new EditElementWindow(selected.Id, 0);
+                        eew.Show();
+                        break;
+                    }
+                case 1:
+                    {
+                        Resistor selected = dgr.Item as Resistor;
+                        EditElementWindow eew = new EditElementWindow(selected.ResId, 1);
+                        eew.Show();
+                        break;
+                    }
+                case 2:
+                    {
+                        Capacitor selected = dgr.Item as Capacitor;
+                        EditElementWindow eew = new EditElementWindow(selected.CapId, 2);
+                        eew.Show();
+                        break;
+                    }
+                case 3:
+                    {
+                        Diode selected = dgr.Item as Diode;
+                        EditElementWindow eew = new EditElementWindow(selected.DioId, 3);
+                        eew.Show();
+                        break;
+                    }
+                case 4:
+                    {
+                        FieldEffectTransistor selected = dgr.Item as FieldEffectTransistor;
+                        EditElementWindow eew = new EditElementWindow(selected.FETId, 4);
+                        eew.Show();
+                        break;
+                    }
+                case 5:
+                    {
+                        BipolarTransistor selected = dgr.Item as BipolarTransistor;
+                        EditElementWindow eew = new EditElementWindow(selected.BTId, 5);
+                        eew.Show();
+                        break;
+                    }
+            }
+        }
+
     }
 }

@@ -1,0 +1,14 @@
+﻿<Window x:Class="VatnikCWApp.ElementTypeChangeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VatnikCWApp"
+        mc:Ignorable="d"
+        Title="ElementTypeChangeWindow" Height="118.8" Width="800">
+    <Grid>
+        <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Height="49" Margin="10,10,9.6,0" VerticalAlignment="Top" CanUserAddRows="False"/>
+        <Button x:Name="SaveButton" Content="Save" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="SaveButton_Click"/>
+
+    </Grid>
+</Window>

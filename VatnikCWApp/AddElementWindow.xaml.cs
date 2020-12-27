@@ -47,19 +47,19 @@ namespace VatnikCWApp
             switch (i)
             {
                 case 0:
-                    ResList[0].Insert(float.Parse(PriceTextBox.Text), MainWindow.db);
+                    ResList[0].Insert((float)double.Parse(PriceTextBox.Text), MainWindow.db);
                     break;
                 case 1:
-                    CapList[0].Insert(float.Parse(PriceTextBox.Text), MainWindow.db);
+                    CapList[0].Insert((float)double.Parse(PriceTextBox.Text), MainWindow.db);
                     break;
                 case 2:
-                    DioList[0].Insert(float.Parse(PriceTextBox.Text), MainWindow.db);
+                    DioList[0].Insert((float)double.Parse(PriceTextBox.Text), MainWindow.db);
                     break;
                 case 3:
-                    FETList[0].Insert(float.Parse(PriceTextBox.Text), MainWindow.db);
+                    FETList[0].Insert((float)double.Parse(PriceTextBox.Text), MainWindow.db);
                     break;
                 case 4:
-                    BTList[0].Insert(float.Parse(PriceTextBox.Text), MainWindow.db);
+                    BTList[0].Insert((float)double.Parse(PriceTextBox.Text), MainWindow.db);
                     break;
             }
             this.Close();
@@ -78,7 +78,7 @@ namespace VatnikCWApp
                 case 1:
                     CapList = new List<Capacitor>();
                     CapList.Add(new Capacitor());
-                    ElementDataGrid.ItemsSource = CapList; ;
+                    ElementDataGrid.ItemsSource = CapList;
                     break;
                 case 2:
                     DioList = new List<Diode>();

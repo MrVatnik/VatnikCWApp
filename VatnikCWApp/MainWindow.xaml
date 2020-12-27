@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dataGridMain" AutoGenerateColumns ="True"  Margin="250,10,9.6,10" AutoGeneratingColumn="dataGridMain_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dataGridMain" AutoGenerateColumns ="True"  Margin="250,10,9.6,10" AutoGeneratingColumn="dataGridMain_AutoGeneratingColumn" CanUserAddRows="False">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
         <ComboBox x:Name="TypesComboBox" HorizontalAlignment="Left" Margin="100,13,0,0" VerticalAlignment="Top" Width="145" SelectionChanged="TypesComboBox_SelectionChanged"/>
         <Label x:Name="label" Content="Table selecter
 " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.142,-0.516"/>
