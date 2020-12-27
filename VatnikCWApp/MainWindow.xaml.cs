@@ -22,6 +22,8 @@ namespace VatnikCWApp
     public partial class MainWindow : Window
     {
         static string connectionString = @"Data Source=WATNIK-LAPTOP\MSSQLSERVER01;Initial Catalog=VatnikElements;Integrated Security=True";
+        public static DataContext db;
+
 
         List<string> comboList = new List<string>{ 
             "Elements",
@@ -31,7 +33,8 @@ namespace VatnikCWApp
             "Field Effect Transistors",
             "Bipolar Transistors" 
         };
-        DataContext db;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -74,6 +77,22 @@ namespace VatnikCWApp
                     dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>();
                     break;
             }
+        }
+
+        private void dataGridMain_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "ResId" || e.Column.Header.ToString() == "CapId" ||
+                e.Column.Header.ToString() == "DioId" || e.Column.Header.ToString() == "FETId" || e.Column.Header.ToString() == "BTId")
+            {
+                //e.Cancel = true;   // For not to include 
+                 e.Column.IsReadOnly = true; // Makes the column as read only
+            }
+        }
+
+        private void NewElButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddElementWindow win = new AddElementWindow();
+            win.Show();
         }
     }
 }
