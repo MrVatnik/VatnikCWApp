@@ -83,6 +83,9 @@
     </Compile>
     <Compile Include="BipolarTransistor.cs" />
     <Compile Include="Capacitor.cs" />
+    <Compile Include="DeleteWindow.xaml.cs">
+      <DependentUpon>DeleteWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Diode.cs" />
     <Compile Include="EditElementWindow.xaml.cs">
       <DependentUpon>EditElementWindow.xaml</DependentUpon>
@@ -93,6 +96,10 @@
     <Compile Include="FieldEffectTransistor.cs" />
     <Compile Include="Resistor.cs" />
     <Page Include="AddElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

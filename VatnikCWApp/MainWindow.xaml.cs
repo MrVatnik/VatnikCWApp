@@ -112,10 +112,21 @@ namespace VatnikCWApp
             }
         }
 
+        private void UpdateTable()
+        {
+            int index = TypesComboBox.SelectedIndex;
+            if (TypesComboBox.SelectedIndex != 5)
+                TypesComboBox.SelectedIndex += 1;
+            else
+                TypesComboBox.SelectedIndex = 0;
+            TypesComboBox.SelectedIndex = index;
+        }
+
         private void NewElButton_Click(object sender, RoutedEventArgs e)
         {
             AddElementWindow win = new AddElementWindow();
-            win.Show();
+            win.ShowDialog();
+            UpdateTable();
         }
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -132,45 +143,46 @@ namespace VatnikCWApp
                     {
                         Element selected = dgr.Item as Element;
                         EditElementWindow eew = new EditElementWindow(selected.Id, 0);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
                 case 1:
                     {
                         Resistor selected = dgr.Item as Resistor;
                         EditElementWindow eew = new EditElementWindow(selected.ResId, 1);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
                 case 2:
                     {
                         Capacitor selected = dgr.Item as Capacitor;
                         EditElementWindow eew = new EditElementWindow(selected.CapId, 2);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
                 case 3:
                     {
                         Diode selected = dgr.Item as Diode;
                         EditElementWindow eew = new EditElementWindow(selected.DioId, 3);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
                 case 4:
                     {
                         FieldEffectTransistor selected = dgr.Item as FieldEffectTransistor;
                         EditElementWindow eew = new EditElementWindow(selected.FETId, 4);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
                 case 5:
                     {
                         BipolarTransistor selected = dgr.Item as BipolarTransistor;
                         EditElementWindow eew = new EditElementWindow(selected.BTId, 5);
-                        eew.Show();
+                        eew.ShowDialog();
                         break;
                     }
             }
+            UpdateTable();
         }
 
     }

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VatnikCWApp"
         mc:Ignorable="d"
-        Title="ElementTypeChangeWindow" Height="118.8" Width="800">
+        Title="ElementTypeChangeWindow" Height="125" Width="800">
     <Grid>
         <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Height="49" Margin="10,10,9.6,0" VerticalAlignment="Top" CanUserAddRows="False" AutoGeneratingColumn="ElementDataGrid_AutoGeneratingColumn"/>
-        <Button x:Name="SaveButton" Content="Save" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="SaveButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="SaveButton_Click" Width="75"/>
 
     </Grid>
 </Window>

@@ -41,38 +41,40 @@ namespace VatnikCWApp
         {
             InitializeComponent();
             SelectedType = type;
-            Id = id;
+            this.Id = id;
 
             switch (SelectedType)
             {
                 case 0:/*element*/
                     ElList = new List<Element>();
-                    ElList.Add(MainWindow.db.GetTable<Element>().ToList<Element>().Find(el => el.Id == Id));
+                    ElList.Add(MainWindow.db.GetTable<Element>().ToList<Element>().Find(el => el.Id == this.Id));
                     EEDataGrid.ItemsSource = ElList;
                     break;
                 case 1:/*resistor*/
                     ResList = new List<Resistor>();
-                    ResList.Add(MainWindow.db.GetTable<Resistor>().ToList<Resistor>().Find(el => el.ResId == Id));
+                    ResList.Add(MainWindow.db.GetTable<Resistor>().ToList<Resistor>().Find(el => el.ResId == this.Id));
                     EEDataGrid.ItemsSource = ResList;
                     break;
                 case 2:/*capacitor*/
                     CapList = new List<Capacitor>();
-                    CapList.Add(MainWindow.db.GetTable<Capacitor>().ToList<Capacitor>().Find(el => el.CapId == Id));
+                    CapList.Add(MainWindow.db.GetTable<Capacitor>().ToList<Capacitor>().Find(el => el.CapId == this.Id));
                     EEDataGrid.ItemsSource = CapList;
                     break;
                 case 3:/*diode*/
                     DioList = new List<Diode>();
-                    DioList.Add(MainWindow.db.GetTable<Diode>().ToList<Diode>().Find(el => el.DioId == Id));
+                    DioList.Add(MainWindow.db.GetTable<Diode>().ToList<Diode>().Find(el => el.DioId == this.Id));
                     EEDataGrid.ItemsSource = DioList;
                     break;
                 case 4:/*FET*/
                     FETList = new List<FieldEffectTransistor>();
-                    FETList.Add(MainWindow.db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().Find(el => el.FETId == Id));
+                    FETList.Add(MainWindow.db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                        Find(el => el.FETId == this.Id));
                     EEDataGrid.ItemsSource = FETList;
                     break;
                 case 5:/*Bipolar T*/
                     BTList = new List<BipolarTransistor>();
-                    BTList.Add(MainWindow.db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().Find(el => el.BTId == Id));
+                    BTList.Add(MainWindow.db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                        Find(el => el.BTId == this.Id));
                     EEDataGrid.ItemsSource = BTList;
                     break;
             }
@@ -89,7 +91,8 @@ namespace VatnikCWApp
             {
                 case 0:/*element*/
                     {
-                        Element previous = MainWindow.db.GetTable<Element>().ToList<Element>().Find(el => el.Id == Id);
+                        Element previous = MainWindow.db.GetTable<Element>().ToList<Element>().
+                            Find(el => el.Id == this.Id);
                         Element current = ElList[0];
                         if(current.Type==previous.Type)
                             MainWindow.db.Update(current);
@@ -99,7 +102,8 @@ namespace VatnikCWApp
                             {
                                 case ElTypes.Resistor:
                                     MainWindow.db.Delete(
-                                        MainWindow.db.GetTable<Resistor>().ToList<Resistor>().Find(El => El.ResId == previous.Id)
+                                        MainWindow.db.GetTable<Resistor>().ToList<Resistor>().
+                                        Find(El => El.ResId == previous.Id)
                                         );
                                     break;
 
@@ -124,13 +128,15 @@ namespace VatnikCWApp
 
                                 case ElTypes.Bipolar_Transistor:
                                     MainWindow.db.Delete(
-                                        MainWindow.db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().Find(El => El.BTId == previous.Id)
+                                        MainWindow.db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                        Find(El => El.BTId == previous.Id)
                                         );
                                     break;
 
                             }
 
-                            ElementTypeChangeWindow etcw = new ElementTypeChangeWindow(Id, (int)current.Type, current.Name);
+                            ElementTypeChangeWindow etcw = new ElementTypeChangeWindow(this.Id, (int)current.Type, current.Name);
+                            MainWindow.db.Update(current);
                             etcw.Show();
                         }
 
@@ -175,6 +181,13 @@ namespace VatnikCWApp
                 //e.Cancel = true;   // For not to include 
                 e.Column.IsReadOnly = true; // Makes the column as read only                
             }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteWindow dwin = new DeleteWindow(this.Id);
+            dwin.Show();
+            this.Close();
         }
     }
 }

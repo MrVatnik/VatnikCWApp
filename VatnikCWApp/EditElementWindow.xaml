@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VatnikCWApp"
         mc:Ignorable="d"
-        Title="EditElementWindow" Height="142.8" Width="800">
-    <Grid>
-        <DataGrid x:Name="EEDataGrid" AutoGenerateColumns ="True" Height="75" Margin="10,10,10,0" VerticalAlignment="Top" AutoGeneratingColumn="EEDataGrid_AutoGeneratingColumn"/>
-        <Button x:Name="SaveButton" Content="Save" Margin="383,90,382.6,0" Click="SaveButton_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        Title="EditElementWindow" Height="150" Width="804">
+    <Grid Margin="0,0,-0.4,0.2" Width="794">
+        <DataGrid x:Name="EEDataGrid" AutoGenerateColumns ="True" Height="49" Margin="10,10,10,0" VerticalAlignment="Top" AutoGeneratingColumn="EEDataGrid_AutoGeneratingColumn"/>
+        <Button x:Name="SaveButton" Content="Save" Margin="10,0,0,10" Click="SaveButton_Click" VerticalAlignment="Bottom" Width="75" HorizontalAlignment="Left"/>
+        <Button x:Name="DeleteButton" Content="Delete
+" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75" Click="DeleteButton_Click"/>
 
     </Grid>
 </Window>
