@@ -1,4 +1,5 @@
-﻿using LinqToDB;
+﻿using Humanizer;
+using LinqToDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,11 +97,18 @@ namespace VatnikCWApp
 
         private void dataGridMain_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
+            //e.Cancel = true;   // For not to include 
+            e.Column.IsReadOnly = true; // Makes the column as read only
             if (e.Column.Header.ToString() == "Id" || e.Column.Header.ToString() == "ResId" || e.Column.Header.ToString() == "CapId" ||
                 e.Column.Header.ToString() == "DioId" || e.Column.Header.ToString() == "FETId" || e.Column.Header.ToString() == "BTId")
             {
-                //e.Cancel = true;   // For not to include 
-                 e.Column.IsReadOnly = true; // Makes the column as read only
+                e.Column.Header = "Id";
+            }
+            //e.Column.Header = e.Column.Header.ToString().Humanize();
+            if(e.Column.Header.ToString() == "NominalPower"|| e.Column.Header.ToString() == "CutoffFrequency" ||
+                e.Column.Header.ToString() == "MaxPowerLoss" || e.Column.Header.ToString() == "OpenChanelResistance")
+            {
+                e.Column.Header = e.Column.Header.ToString().Humanize(LetterCasing.Title);
             }
         }
 

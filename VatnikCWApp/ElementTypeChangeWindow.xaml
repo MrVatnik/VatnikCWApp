@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ElementTypeChangeWindow" Height="118.8" Width="800">
     <Grid>
-        <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Height="49" Margin="10,10,9.6,0" VerticalAlignment="Top" CanUserAddRows="False"/>
+        <DataGrid x:Name="ElementDataGrid" AutoGenerateColumns ="True" Height="49" Margin="10,10,9.6,0" VerticalAlignment="Top" CanUserAddRows="False" AutoGeneratingColumn="ElementDataGrid_AutoGeneratingColumn"/>
         <Button x:Name="SaveButton" Content="Save" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="SaveButton_Click"/>
 
     </Grid>
