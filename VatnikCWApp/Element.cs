@@ -43,8 +43,5 @@ namespace VatnikCWApp
             return "Element:     Id: " + this.Id + " , Name: " + this.Name + " , Type: " + this.Type.Humanize() +
                 " , Price: " + this.Price;
         }
-
-
-
     }
 }

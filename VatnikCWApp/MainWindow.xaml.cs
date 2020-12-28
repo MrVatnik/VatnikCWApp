@@ -22,7 +22,6 @@ namespace VatnikCWApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string connectionString = @"Data Source=WATNIK-LAPTOP\MSSQLSERVER01;Initial Catalog=VatnikElements;Integrated Security=True";
         public static DataContext db;
 
 
@@ -36,6 +35,7 @@ namespace VatnikCWApp
         };
 
 
+
         List<Element> ElementsTable;
         List<Resistor> ResistorsTable;
         List<Capacitor> CapacitorsTable;
@@ -47,17 +47,9 @@ namespace VatnikCWApp
         public MainWindow()
         {
             InitializeComponent();
-
-            db = new DataContext("SqlServer.2019", connectionString);
-
-            /*List<Element> ElementsList = new List<Element>
-            {
-                new Element {Id=1,Name="aaa",Type=ElTypes.Resistor,Price=(float)1.1},
-                new Element {Id=1,Name="bbb",Type=ElTypes.Capacitor,Price=(float)2.2},
-                new Element {Id=1,Name="ccc",Type=ElTypes.Diode,Price=(float)3.3}
-            };*/
-            /*ITable<Element> ElementsList = db.GetTable<Element>();
-            dataGridMain.ItemsSource = ElementsList;*/
+            
+            db = new DataContext();
+            
 
             TypesComboBox.ItemsSource = comboList;
             TypesComboBox.SelectedIndex = 0;
