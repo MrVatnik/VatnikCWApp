@@ -34,6 +34,57 @@ namespace VatnikCWApp
             "Bipolar Transistors" 
         };
 
+        List<string> SParamEl = new List<string>
+        {
+            "Id",
+            "Name",
+            "Type",
+            "Price"
+        };
+        List<string> SParamRes = new List<string>
+        {
+            "Id",
+            "Name",
+            "Resistance",
+            "Nominal power",
+            "Type"
+        };
+        List<string> SParamCap = new List<string>
+        {
+            "Id",
+            "Name",
+            "Capacity",
+            "Type"
+        };
+        List<string> SParamDio = new List<string>
+        {
+            "Id",
+            "Name",
+            "MaxReVoltage",
+            "MaxForVoltage",
+            "MaxReCurrent",
+            "MaxForCurrent"
+        };
+        List<string> SParamFET = new List<string>
+        {
+            "Id",
+            "Name",
+            "MaxDSVoltage",
+            "MaxDSCurrent",
+            "OpenChanelResistance",
+            "ReMVoltage",
+            "ReMCurrent"
+        };
+        List<string> SParamBT = new List<string>
+        {
+            "Id",
+            "Name",
+            "MaxCEVoltage",
+            "MaxCCurrent",
+            "CutoffFrequency",
+            "MaxPowerLoss"
+        };
+
 
 
         List<Element> ElementsTable;
@@ -62,26 +113,38 @@ namespace VatnikCWApp
             switch (i){
                 case 0:
                     ElementsTable = db.GetTable<Element>().ToList<Element>();
+                    SearchComboBox.ItemsSource = SParamEl;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = ElementsTable;
                     break;
                 case 1:
                     ResistorsTable = db.GetTable<Resistor>().ToList<Resistor>();
+                    SearchComboBox.ItemsSource = SParamRes;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = ResistorsTable;
                     break;
                 case 2:
                     CapacitorsTable = db.GetTable<Capacitor>().ToList<Capacitor>();
+                    SearchComboBox.ItemsSource = SParamCap;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = CapacitorsTable;
                     break;
                 case 3:
                     DiodesTable = db.GetTable<Diode>().ToList<Diode>();
+                    SearchComboBox.ItemsSource = SParamDio;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = DiodesTable;
                     break;
                 case 4:
                     FETTable = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>();
+                    SearchComboBox.ItemsSource = SParamFET;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = FETTable;
                     break;
                 case 5:
                     BTTable = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>();
+                    SearchComboBox.ItemsSource = SParamBT;
+                    SearchComboBox.SelectedIndex = 0;
                     dataGridMain.ItemsSource = BTTable;
                     break;
             }
@@ -128,8 +191,8 @@ namespace VatnikCWApp
             {
                 dgr = sender as DataGridRow;
             }
-            int i = TypesComboBox.SelectedIndex;
-            switch (i)
+            
+            switch (TypesComboBox.SelectedIndex)
             {
                 case 0:
                     {
@@ -177,5 +240,171 @@ namespace VatnikCWApp
             UpdateTable();
         }
 
+        private void FindButton_Click(object sender, RoutedEventArgs e)
+        {
+            switch (TypesComboBox.SelectedIndex)
+            {
+                case 0:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<Element>().ToList<Element>().
+                                FindAll(el => el.Id.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<Element>().ToList<Element>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<Element>().ToList<Element>().
+                                FindAll(el => el.Type.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<Element>().ToList<Element>().
+                                FindAll(el => el.Price.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+                case 1:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<Resistor>().ToList<Resistor>().
+                                FindAll(el => el.ResId.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<Resistor>().ToList<Resistor>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<Resistor>().ToList<Resistor>().
+                                FindAll(el => el.Resistance.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<Resistor>().ToList<Resistor>().
+                                FindAll(el => el.NominalPower.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 4:
+                            dataGridMain.ItemsSource = db.GetTable<Resistor>().ToList<Resistor>().
+                                FindAll(el => el.Type.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<Capacitor>().ToList<Capacitor>().
+                                FindAll(el => el.CapId.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<Capacitor>().ToList<Capacitor>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<Capacitor>().ToList<Capacitor>().
+                                FindAll(el => el.Capacity.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<Capacitor>().ToList<Capacitor>().
+                                FindAll(el => el.Type.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.DioId.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.MaxReVoltage.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.MaxForVoltage.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 4:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.MaxReCurrent.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 5:
+                            dataGridMain.ItemsSource = db.GetTable<Diode>().ToList<Diode>().
+                                FindAll(el => el.MaxForCurrent.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+
+                case 4:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.FETId.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.MaxDSVoltage.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.MaxDSCurrent.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 4:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.OpenChanelResistance.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 5:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.ReMVoltage.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 6:
+                            dataGridMain.ItemsSource = db.GetTable<FieldEffectTransistor>().ToList<FieldEffectTransistor>().
+                                FindAll(el => el.ReMCurrent.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+
+                case 5:
+                    switch (SearchComboBox.SelectedIndex)
+                    {
+                        case 0:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.BTId.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 1:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.Name.Contains(SearchTextBox.Text));
+                            break;
+                        case 2:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.MaxCEVoltage.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 3:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.MaxCCurrent.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 4:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.CutoffFrequency.ToString().Contains(SearchTextBox.Text));
+                            break;
+                        case 5:
+                            dataGridMain.ItemsSource = db.GetTable<BipolarTransistor>().ToList<BipolarTransistor>().
+                                FindAll(el => el.MaxPowerLoss.ToString().Contains(SearchTextBox.Text));
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 }

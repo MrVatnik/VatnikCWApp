@@ -18,6 +18,10 @@
         <Label x:Name="label" Content="Table selecter
 " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.142,-0.516"/>
         <Button x:Name="NewElButton" Content="Add new element" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="235" Click="NewElButton_Click"/>
+        <ComboBox x:Name="SearchComboBox" HorizontalAlignment="Left" Margin="100,40,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="label1" Content="Search via" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="23" Margin="10,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+        <Button x:Name="FindButton" Content="Find" HorizontalAlignment="Left" Margin="170,71,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="FindButton_Click"/>
 
     </Grid>
 </Window>
