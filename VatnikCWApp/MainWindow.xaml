@@ -22,6 +22,7 @@
         <Label x:Name="label1" Content="Search via" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="85"/>
         <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="23" Margin="10,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
         <Button x:Name="FindButton" Content="Find" HorizontalAlignment="Left" Margin="170,71,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="FindButton_Click"/>
+        <Button x:Name="ExcelButton" Content="Export to Excel" Margin="10,129,0,0" Width="235" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.506,1.615" Click="ExcelButton_Click" Height="20"/>
 
     </Grid>
 </Window>

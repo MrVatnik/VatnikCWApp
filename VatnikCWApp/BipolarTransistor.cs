@@ -47,6 +47,13 @@ namespace VatnikCWApp
             db.Insert(this);
         }
 
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.BTId.ToString(), this.Name, this.MaxCEVoltage.ToString(), 
+                this.MaxCCurrent.ToString(), this.CutoffFrequency.ToString(), this.MaxPowerLoss.ToString() };
+            return res;
+        }
+
 
     }
 }

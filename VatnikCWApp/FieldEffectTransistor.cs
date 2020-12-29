@@ -50,5 +50,13 @@ namespace VatnikCWApp
             db.Insert(this);
         }
 
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.FETId.ToString(), this.Name, this.MaxDSVoltage.ToString(),
+                this.MaxDSCurrent.ToString(), this.OpenChanelResistance.ToString(), this.ReMVoltage.ToString(),
+                this.ReMCurrent.ToString() };
+            return res;
+        }
+
     }
 }

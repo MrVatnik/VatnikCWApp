@@ -48,5 +48,12 @@ namespace VatnikCWApp
             db.Insert(this);
         }
 
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.DioId.ToString(), this.Name, this.MaxReVoltage.ToString(),
+                this.MaxForVoltage.ToString(), this.MaxReCurrent.ToString(),this.MaxForCurrent.ToString() };
+            return res;
+        }
+
     }
 }

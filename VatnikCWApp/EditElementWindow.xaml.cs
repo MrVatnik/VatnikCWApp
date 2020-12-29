@@ -169,7 +169,7 @@ namespace VatnikCWApp
 
         private void EEDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.Header.ToString() == "ResId" || e.Column.Header.ToString() == "CapId" ||
+            if (e.Column.Header.ToString() == "Id"||e.Column.Header.ToString() == "ResId" || e.Column.Header.ToString() == "CapId" ||
                 e.Column.Header.ToString() == "DioId" || e.Column.Header.ToString() == "FETId" || e.Column.Header.ToString() == "BTId")
             {
                 //e.Cancel = true;   // For not to include 
@@ -186,7 +186,7 @@ namespace VatnikCWApp
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteWindow dwin = new DeleteWindow(this.Id);
-            dwin.Show();
+            dwin.ShowDialog();
             this.Close();
         }
     }

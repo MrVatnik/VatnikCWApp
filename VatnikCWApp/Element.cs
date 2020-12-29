@@ -43,5 +43,11 @@ namespace VatnikCWApp
             return "Element:     Id: " + this.Id + " , Name: " + this.Name + " , Type: " + this.Type.Humanize() +
                 " , Price: " + this.Price;
         }
+
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.Id.ToString(), this.Name, this.Type.Humanize(), this.Price.ToString() };
+            return res;
+        }
     }
 }

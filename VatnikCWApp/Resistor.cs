@@ -53,6 +53,13 @@ namespace VatnikCWApp
             db.Insert(this);
         }
 
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.ResId.ToString(), this.Name,this.Resistance.ToString(),
+                this.NominalPower.ToString(),this.Type.Humanize() };
+            return res;
+        }
+
     }
 
 }

@@ -51,5 +51,11 @@ namespace VatnikCWApp
             db.Insert(this);
         }
 
+        public List<string> ToStringList()
+        {
+            List<string> res = new List<string> { this.CapId.ToString(), this.Name,this.Capacity.ToString(), this.Type.Humanize()};
+            return res;
+        }
+
     }
 }

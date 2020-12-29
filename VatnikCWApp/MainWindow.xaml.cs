@@ -2,7 +2,11 @@
 using LinqToDB;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel =  Microsoft.Office.Interop.Excel;
 
 namespace VatnikCWApp
 {
@@ -25,13 +30,13 @@ namespace VatnikCWApp
         public static DataContext db;
 
 
-        List<string> comboList = new List<string>{ 
+        List<string> comboList = new List<string>{
             "Elements",
             "Resistors",
             "Capacitors",
             "Diodes",
             "Field Effect Transistors",
-            "Bipolar Transistors" 
+            "Bipolar Transistors"
         };
 
         List<string> SParamEl = new List<string>
@@ -98,9 +103,9 @@ namespace VatnikCWApp
         public MainWindow()
         {
             InitializeComponent();
-            
+
             db = new DataContext();
-            
+
 
             TypesComboBox.ItemsSource = comboList;
             TypesComboBox.SelectedIndex = 0;
@@ -109,8 +114,8 @@ namespace VatnikCWApp
         private void TypesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int i = TypesComboBox.SelectedIndex;
-          
-            switch (i){
+
+            switch (i) {
                 case 0:
                     ElementsTable = db.GetTable<Element>().ToList<Element>();
                     SearchComboBox.ItemsSource = SParamEl;
@@ -160,7 +165,7 @@ namespace VatnikCWApp
                 e.Column.Header = "Id";
             }
             //e.Column.Header = e.Column.Header.ToString().Humanize();
-            if(e.Column.Header.ToString() == "NominalPower"|| e.Column.Header.ToString() == "CutoffFrequency" ||
+            if (e.Column.Header.ToString() == "NominalPower" || e.Column.Header.ToString() == "CutoffFrequency" ||
                 e.Column.Header.ToString() == "MaxPowerLoss" || e.Column.Header.ToString() == "OpenChanelResistance")
             {
                 e.Column.Header = e.Column.Header.ToString().Humanize(LetterCasing.Title);
@@ -191,7 +196,7 @@ namespace VatnikCWApp
             {
                 dgr = sender as DataGridRow;
             }
-            
+
             switch (TypesComboBox.SelectedIndex)
             {
                 case 0:
@@ -406,5 +411,15 @@ namespace VatnikCWApp
                     break;
             }
         }
+
+        private void ExcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelWindow EW = new ExcelWindow(TypesComboBox.SelectedIndex, dataGridMain);
+            EW.ShowDialog();
+        
+        }
+
+
+
     }
 }
